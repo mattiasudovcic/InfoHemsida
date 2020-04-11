@@ -15,7 +15,7 @@ import java.util.logging.Logger;
  */
 public class LoginFonster extends javax.swing.JFrame {
     
-    HamtaData kontroll = new HamtaData();
+    DataAccess access = new DataAccess();
 
     public LoginFonster() {
         initComponents();
@@ -35,6 +35,7 @@ public class LoginFonster extends javax.swing.JFrame {
         btnLoggaIn = new javax.swing.JButton();
         lblError = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
+        tfLosenord = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -54,6 +55,8 @@ public class LoginFonster extends javax.swing.JFrame {
             }
         });
 
+        tfLosenord.setText("jTextField1");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -65,8 +68,11 @@ public class LoginFonster extends javax.swing.JFrame {
                         .addComponent(lblError)
                         .addGap(83, 83, 83)
                         .addComponent(btnLoggaIn))
-                    .addComponent(tfMejl, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(371, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(tfMejl, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(103, 103, 103)
+                        .addComponent(tfLosenord, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(225, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton2)
@@ -78,7 +84,9 @@ public class LoginFonster extends javax.swing.JFrame {
                 .addGap(31, 31, 31)
                 .addComponent(jButton2)
                 .addGap(47, 47, 47)
-                .addComponent(tfMejl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(tfMejl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tfLosenord, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnLoggaIn)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -93,7 +101,7 @@ public class LoginFonster extends javax.swing.JFrame {
     
         try {
            
-            if (kontroll.check(tfMejl.getText()) == true)
+            if (access.verifieraInlogg(tfMejl.getText(), tfLosenord.getText()) == true)
             {System.out.println("match!"); } 
             else {
                 lblError.setText("Mejladdressen hittades ej.");
@@ -150,6 +158,7 @@ public class LoginFonster extends javax.swing.JFrame {
     private javax.swing.JButton btnLoggaIn;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel lblError;
+    private javax.swing.JTextField tfLosenord;
     private javax.swing.JTextField tfMejl;
     // End of variables declaration//GEN-END:variables
 }
