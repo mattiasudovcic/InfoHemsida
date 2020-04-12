@@ -1,7 +1,7 @@
 Create table Konto (
 KontoID int identity primary key not null, 
-Mejladress Nvarchar(50) unique not null, 
-Lösenord Nvarchar(50) not null,
+Mejladress Nvarchar(100) unique not null, 
+LÃ¶senord Nvarchar(100) not null,
 Notis bit,
 AdminFunktionalitet bit
 );
@@ -9,55 +9,55 @@ AdminFunktionalitet bit
 
 Create table Kategori (
 KategoriID int identity primary key not null,
-Kategorinamn varchar(20)
+Kategorinamn varchar(100)
 );
 
-Create table Blogginlägg (
-InläggID int identity primary key not null,
-Rubrik nvarchar(40),
-BInnehåll text, 
+Create table BlogginlÃ¤gg (
+InlÃ¤ggID int identity primary key not null,
+Rubrik nvarchar(100),
+BInnehÃ¥ll text, 
 Kategori int,
 foreign key (Kategori) References Kategori(KategoriID)
 );
 
-Create table Möte (
-MötesID int identity primary key not null, 
+Create table MÃ¶te (
+MÃ¶tesID int identity primary key not null, 
 Tid time, 
 Datum date,
-Mötesledare int,
+MÃ¶tesledare int,
 Deltagare int,
-foreign key (Mötesledare) references Konto(KontoID),
+foreign key (MÃ¶tesledare) references Konto(KontoID),
 foreign key (Deltagare) references Konto(KontoID)
 );
 
 Create table Anslag (
 AnslagID int identity primary key not null, 
-ARubrik nvarchar(20),
-AInnehåll text,
+ARubrik nvarchar(100),
+AInnehÃ¥ll text,
 Kategori int,
 foreign key (Kategori) references Kategori(KategoriID)
 );
 
 Create table AnAn (
 AnAn int identity not null,
-Användare int not null,
+AnvÃ¤ndare int not null,
 Anslag int not null,
-foreign key (Användare) references Konto(KontoID),
+foreign key (AnvÃ¤ndare) references Konto(KontoID),
 foreign key (Anslag) references Anslag(AnslagID)
 );
 
 Create table KoBl (
 KoBlID int identity not null,
-Inlägg int,
+InlÃ¤gg int,
 Skribent int, 
-foreign key (Inlägg) references Blogginlägg(InläggID),
+foreign key (InlÃ¤gg) references BlogginlÃ¤gg(InlÃ¤ggID),
 foreign key (Skribent) references Konto(KontoID)
 );
 
-Create table AnMö (
-AnMö int identity not null,
-Möte int,
-Mötesledare int,
-foreign key (Möte) references Möte(MötesID),
-foreign key (Mötesledare) references Konto(KontoID)
+Create table AnMÃ¶ (
+AnMÃ¶ int identity not null,
+MÃ¶te int,
+MÃ¶tesledare int,
+foreign key (MÃ¶te) references MÃ¶te(MÃ¶tesID),
+foreign key (MÃ¶tesledare) references Konto(KontoID)
 );
