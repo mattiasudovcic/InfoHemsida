@@ -5,7 +5,6 @@
  */
 package informatikhemsida;
 
-<<<<<<< HEAD
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -46,16 +45,7 @@ public class InformatikHemsida {
         String Name = rs.getString(2);
         System.out.println(ID + " " + Name);}
         
-=======
-
-public class InformatikHemsida {
-
-    public static void main(String[] args)  {
-
->>>>>>> origin/testMaster
         
     }
-    
-    
-    
+   
 }
